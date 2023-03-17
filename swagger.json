@@ -1,0 +1,175 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "iPLON",
+      "description": "This is iplon api documentation",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Employees",
+        "description": "API for Employees in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/addEmployee": {
+        "post": {
+          "tags": [
+            "Employees"
+          ],
+          "description": "Create new Employee in system",
+          "parameters": [
+            {
+              "name": "Employee",
+              "in": "body",
+              "description": "Employee that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Employee"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "New Employee is created",
+              "schema": {
+                "$ref": "#/definitions/Employee"
+              }
+            }
+          }
+        } 
+      },
+      "/Employees": {
+        "get": {
+            "tags": [
+              "Employees"
+            ],
+            "summary": "Get all Employees in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Employee"
+                }
+              }
+            }
+          }
+      },
+      "/Employee/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of employee that we want to find",
+            "type": "integer"
+          }
+        ],
+        "delete": {
+          "summary": "Delete Employee with given ID",
+          "tags": [
+            "Employees"
+          ],
+          "responses": {
+            "200": {
+              "description": "Employee is deleted",
+              "schema": {
+                "$ref": "#/definitions/Employee"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update Employee with given ID",
+          "tags": [
+            "Employees"
+          ],
+          "parameters": [
+            {
+              "name": "Employee",
+              "in": "body",
+              "description": "Employee with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/updateEmployee"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Employee is updated",
+              "schema": {
+                "$ref": "#/definitions/Employee"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Employee": {
+        "required": [
+          "name",
+          "_id",
+          "Team",
+          "status"
+        ],
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "Team": {
+            "type": "string"
+            },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "updateEmployee": {
+        "required": [
+          "name",
+          "Team"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "Team": {
+            "type": "string"
+                },   
+          "status": {
+            "type": "string"
+          }
+         
+        }
+      },
+      "Employees": {
+        "type": "array",
+        "$ref": "#/definitions/Employee"
+      }
+     
+    }
+  }
+
+  
