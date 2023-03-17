@@ -1,5 +1,5 @@
 # rest-api-node-express-iplon
-simple project with node and express to create restful api's (CRUD)
+simple project with node and express to create rest api's 
 
 # How to start Project with below simple steps 
  npm install 
